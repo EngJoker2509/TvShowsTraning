@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+      table,th,td {
+    border:2px solid black;
+  }
+</style>
+
+<body>
+    <div style="display: flex; justify-content: flex-end">
+        <a href="{% url 'tv_semi_finals_app:shows' %}">Go Back</a>
+    </div>
+    <form name="shows" class="shows-form" method="GET" action="/action">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>NetWork</th>
+                <th>Relase Date</th>
+                <th>Action</th>
+            </tr>
+            {% for show in shows %}
+            <tr>
+                <td>{{ show.id }}</td>
+                <td>{{ show.title }}</td>
+                <td>{{ show.network }}</td>
+                <td>{{ show.relase_date }}</td>
+                <td>
+                    <a href="{% url 'tv_semi_finals_app:showswithid' show.id %}">View</a>
+                    <a href="{% url 'tv_semi_finals_app:edit' show.id %}">Edit</a>
+                    <a href="{% url 'tv_semi_finals_app:destroy' show.id  %}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+    <div style="display: flex; justify-content: flex-start">
+        <a href="{% url 'tv_semi_finals_app:new' %}">Add a New Show</a>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit News</title>
+</head>
+
+<style>
+    .news-form {
+        width: 500px;
+        color: rgb(255, 255, 255);
+        font-size: 18px;
+        font-family: sans-serif;
+        background-color: #154a68;
+        padding: 10px;
+    }
+
+    .news-form input,
+    .news-form select,
+    .news-form textarea {
+        border: none;
+        padding: 5px;
+        margin-top: 10px;
+        font-family: sans-serif;
+    }
+
+    .news-form input:focus,
+    .news-form textarea:focus {
+        box-shadow: 3px 3px 10px rgb(228, 228, 228), -3px -3px 10px rgb(224, 224, 224);
+    }
+
+    .news-form .submit {
+        width: 15%;
+        padding: 4px 0;
+        font-size: 10px;
+        color: rgb(44, 44, 44);
+        background-color: #ffffff;
+        border-radius: 0px;
+    }
+
+    .news-form .submit:hover {
+        box-shadow: 3px 3px 6px rgb(255, 214, 176);
+    }
+
+    #title,
+    #desc {
+        display: block;
+    }
+
+
+    .continer {
+        height: auto;
+        width: auto;
+        margin: 50px 500px;
+    }
+</style>
+
+<body>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <div style="display: flex; justify-content: flex-end">
+        <a href="{% url 'tv_semi_finals_app:shows' %}">Go Back</a>
+    </div>
+    <div class="continer">
+        <h1>Edit A Show</h1>
+        <form action="{% url 'tv_semi_finals_app:showswithid' show.id %}" method="POST" class="news-form">
+            {% csrf_token %}
+            <div>
+                <label for="title">Title :</label>
+                <input type="text" name="title" id="title" value="{{ show.title }}">
+            </div>
+            <div>
+                <div>
+                    <label for="network">Network :</label>
+                    <input type="text" name="network" id="network" value="{{ show.network }}">
+                </div>
+                <div>
+                    <label for="relase_date">Relase Date :</label>
+                    <input type="date" name="relase_date" id="relase_date" value="{{ show.relase_date }}">
+                </div>
+            </div>
+            <div>
+                <label for="desc">Description :</label>
+            </div>
+            <div>
+                <textarea name="desc" id="desc" cols="20" rows="10" value="{{ show.desc }}"></textarea>
+            </div>
+            <button type="submit" class="submit">Update</button>
+        </form>
+        <a href="{% url 'tv_semi_finals_app:shows' %}">Go to Shows</a>
+    </div>
+</body>
+
+</html>
