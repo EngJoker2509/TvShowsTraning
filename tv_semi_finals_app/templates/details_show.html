@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap_min.css' %}">
     <title>Document</title>
 </head>
 <style>
@@ -12,17 +14,23 @@
     }
 </style>
 <body>
+    <div class="badge-light"> 
     <div style="display: flex; justify-content: flex-end">
         <a href="{% url 'tv_semi_finals_app:shows' %}">Go Back</a>
     </div>
     <div>
-        <label for=""> <h1>TV Show</h1></label>
-        <h1>{{ show.id }}</h1>
+        <label><h1 class="font-weight-bold font-italic border-dark">TV Show</h1></label>
+        <h1 class="font-weight-normal font-italic border-dark">{{ show.id }}</h1>
     </div>
-    <h1>{{ show.title }}</h1>
-    <h1>{{ show.network }}</h1>
-    <h1>{{ show.relase_date }}</h1>
-    <h1>{{ show.desc }}</h1>
+    <div class="ml-2">
+        <ul>
+    <li><h1 class="font-weight-normal font-italic border-dark"> Tilte : -{{ show.title }}</h1></li>
+    <li><h1 class="font-weight-normal font-italic border-dark"> Netowrok :- {{ show.network }}</h1></li>
+    <li><h1 class="font-weight-normal font-italic border-dark"> Relase Date :-  {{ show.relase_date }}</h1></li>
+    <li> <h1 class="font-weight-normal font-italic border-dark"> Desc :- {{ show.desc }}</h1></li>
+</ul>
+</div>
+</div>
 
     
 </body>

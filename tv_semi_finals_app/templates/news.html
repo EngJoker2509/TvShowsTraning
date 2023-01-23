@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap_min.css' %}">
     <title>News</title>
 </head>
 
@@ -59,6 +61,7 @@
 </style>
 
 <body>
+    <div class="badge-light">
     {% if messages %}
     <ul class="messages">
         {% for message in messages %}
@@ -97,6 +100,7 @@
             <button type="submit" class="submit">Create</button>
         </form>
     </div>
+</div>
 </body>
 
 </html>

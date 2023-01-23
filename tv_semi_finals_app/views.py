@@ -23,7 +23,8 @@ def add_display_show(request, id):
                 return redirect('/show/new')
         _title = request.POST['title']
         _network = request.POST['network']
-        _relase_date = datetime.strptime(request.POST['relase_date'], "%Y-%m-%d")
+        _relase_date = datetime.strptime(
+            request.POST['relase_date'], "%Y-%m-%d")
         _desc = request.POST['desc']
         if shows.objects.filter(id=id).exists():
             shows._update(id, _title, _network, _relase_date, _desc)
